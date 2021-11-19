@@ -1,6 +1,7 @@
 package br.edu.ifms.ordemservico.entities;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.time.Instant;
 import java.util.Objects;
 
@@ -33,7 +34,7 @@ public class OrdemDeServico implements Serializable{
 	@Column(columnDefinition = "TEXT")
 	private String descricaoProblema;
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
-	private Instant dataCadastro;
+	private Date dataCadastro;
 	@Enumerated(value = EnumType.STRING)
 	private Status status;
 	@Enumerated(value = EnumType.STRING)
@@ -47,13 +48,13 @@ public class OrdemDeServico implements Serializable{
 	public OrdemDeServico() {}
 
 	public OrdemDeServico(Long id, String equipamento, String patrimonio, String setor, String descricaoPoblema,
-			Instant dataCadastro, Status status, Prioridade prioridade, String descricaoSolucao, Servidor servidor) {
+			Date dataCadastro, Status status, Prioridade prioridade, String descricaoSolucao, Servidor servidor) {
 		this.id = id;
 		this.equipamento = equipamento;
 		this.patrimonio = patrimonio;
 		this.setor = setor;
 		this.descricaoProblema = descricaoPoblema;
-		this.dataCadastro = dataCadastro;
+		this.Date = dataCadastro;
 		this.status = status;
 		this.prioridade = prioridade;
 		this.descricaoSolucao = descricaoSolucao;
@@ -100,7 +101,7 @@ public class OrdemDeServico implements Serializable{
 		this.descricaoProblema = descricaoPoblema;
 	}
 
-	public Instant getDataCadastro() {
+	public Date getDataCadastro() {
 		return dataCadastro;
 	}
 

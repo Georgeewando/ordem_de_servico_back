@@ -1,6 +1,7 @@
 package br.edu.ifms.ordemservico.dto;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.time.Instant;
 
 import javax.persistence.GeneratedValue;
@@ -29,7 +30,7 @@ public class OrdemDeServicoDTO implements Serializable{
 	@NotBlank(message = "O campo descrição do problema é obrigatório")
 	private String descricaoPoblema;
 	@FutureOrPresent(message = "A data nao pode ser anterior a data atual")
-	private Instant dataCadastro;
+	private Date dataCadastro;
 	private Status status;
 	private Prioridade prioridade;
 	@NotBlank(message = "O campo é obrigatório")
@@ -40,7 +41,7 @@ public class OrdemDeServicoDTO implements Serializable{
 	public OrdemDeServicoDTO() {	}
 
 	public OrdemDeServicoDTO(Long id, String equipamento, String patrimonio, String setor, String descricaoPoblema,
-			Instant dataCadastro, Status status, Prioridade prioridade, String descricaoSolucao, Servidor servidor) {
+			Date dataCadastro, Status status, Prioridade prioridade, String descricaoSolucao, Servidor servidor) {
 		this.id = id;
 		this.equipamento = equipamento;
 		this.patrimonio = patrimonio;
@@ -106,11 +107,11 @@ public class OrdemDeServicoDTO implements Serializable{
 		this.descricaoPoblema = descricaoPoblema;
 	}
 
-	public Instant getDataCadastro() {
+	public Date getDataCadastro() {
 		return dataCadastro;
 	}
 
-	public void setDataCadastro(Instant dataCadastro) {
+	public void setDataCadastro(Date dataCadastro) {
 		this.dataCadastro = dataCadastro;
 	}
 
