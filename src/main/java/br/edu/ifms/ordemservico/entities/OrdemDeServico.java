@@ -47,19 +47,24 @@ public class OrdemDeServico implements Serializable{
 	
 	public OrdemDeServico() {}
 
-	public OrdemDeServico(Long id, String equipamento, String patrimonio, String setor, String descricaoPoblema,
+	
+
+	public OrdemDeServico(Long id, String equipamento, String patrimonio, String setor, String descricaoProblema,
 			Date dataCadastro, Status status, Prioridade prioridade, String descricaoSolucao, Servidor servidor) {
+		super();
 		this.id = id;
 		this.equipamento = equipamento;
 		this.patrimonio = patrimonio;
 		this.setor = setor;
-		this.descricaoProblema = descricaoPoblema;
-		this.Date = dataCadastro;
+		this.descricaoProblema = descricaoProblema;
+		this.dataCadastro = dataCadastro;
 		this.status = status;
 		this.prioridade = prioridade;
 		this.descricaoSolucao = descricaoSolucao;
 		this.servidor = servidor;
 	}
+
+
 
 	public Long getId() {
 		return id;
@@ -105,7 +110,7 @@ public class OrdemDeServico implements Serializable{
 		return dataCadastro;
 	}
 
-	public void setDataCadastro(Instant dataCadastro) {
+	public void setDataCadastro(Date dataCadastro) {
 		this.dataCadastro = dataCadastro;
 	}
 

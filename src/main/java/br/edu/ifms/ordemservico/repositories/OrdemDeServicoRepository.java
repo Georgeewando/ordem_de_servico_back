@@ -7,5 +7,5 @@ import br.edu.ifms.ordemservico.entities.OrdemDeServico;
 
 @Repository
 public interface OrdemDeServicoRepository extends JpaRepository<OrdemDeServico, Long>{
-
+	
 }
