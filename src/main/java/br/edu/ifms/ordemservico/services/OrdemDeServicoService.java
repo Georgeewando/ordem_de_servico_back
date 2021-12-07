@@ -34,34 +34,35 @@ public class OrdemDeServicoService {
 	@Transactional(readOnly = true)
 	public OrdemDeServicoDTO findById(Long id){
 		Optional<OrdemDeServico> obj = repository.findById(id);
-		OrdemDeServico ordemDeServico = obj.orElseThrow(() -> new ResourceNotFoundException("Ordem de Serviço solicitada não foi Localizada"));
-		return new OrdemDeServicoDTO(ordemDeServico);
+		OrdemDeServico ordem = obj.orElseThrow(() -> new ResourceNotFoundException("Ordem de Serviço solicitada não foi Localizada"));
+		return new OrdemDeServicoDTO(ordem);
 	}
 	
 	@Transactional
 	public OrdemDeServicoDTO insert(OrdemDeServicoDTO dto) {
-		OrdemDeServico ordemDeServico = new OrdemDeServico();
-		copyDtoToEntity(dto, ordemDeServico);
-		ordemDeServico = repository.save(ordemDeServico);
-		return new OrdemDeServicoDTO(ordemDeServico);
+		OrdemDeServico ordem = new OrdemDeServico();
+		copyDtoToEntity(dto, ordem);
+		ordem = repository.save(ordem);
+		return new OrdemDeServicoDTO(ordem);
 	}
 	
 	@Transactional
 	public OrdemDeServicoDTO update( Long id, OrdemDeServicoDTO dto) {
 		try {
-			OrdemDeServico ordemDeServico = repository.getById(id);
-			copyDtoToEntity(dto, ordemDeServico);
-			ordemDeServico = repository.save(ordemDeServico);
-			return new OrdemDeServicoDTO(ordemDeServico);
+			OrdemDeServico ordem = repository.getById(id);
+			copyDtoToEntity(dto, ordem);
+			ordem = repository.save(ordem);
+			return new OrdemDeServicoDTO(ordem);
+			
 		}catch (EntityNotFoundException e) {
-			throw new ResourceNotFoundException("o Id da ordem de serviços nao foi localizado");
+			throw new ResourceNotFoundException("o Id da ordem de serviço nao foi localizado");
 		}
 	}
 	
 	public void delete(Long id) {
 		try {
 			repository.deleteById(id);
-		}catch (EmptyResultDataAccessException e) {
+		}catch (EmptyResultDataAccessException exception) {
 			throw new ResourceNotFoundException("Não foi possivel excluir, o Id da ordem de serviço nao foi localizado");
 		}catch (DataIntegrityViolationException e) {
 			throw new DataBaseException("Nao foi possivel Excluir a ordem de serviço, pois o mesmo esta em uso.");
@@ -75,6 +76,7 @@ public class OrdemDeServicoService {
 		ordemDeServico.setPatrimonio(dto.getPatrimonio());
 		ordemDeServico.setSetor(dto.getSetor());
 		ordemDeServico.setDescricaoPoblema(dto.getDescricaoPoblema());
+		ordemDeServico.setDataCadastro(dto.getDataCadastro());
 		ordemDeServico.setStatus(dto.getStatus());
 		ordemDeServico.setPrioridade(dto.getPrioridade());
 		ordemDeServico.setDescricaoSolucao(dto.getDescricaoPoblema());

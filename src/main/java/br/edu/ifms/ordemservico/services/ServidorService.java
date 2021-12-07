@@ -28,8 +28,9 @@ public class ServidorService {
 	@Autowired
 	private ServidorRepository repository;
 	
-	public Servidor autenticar(String email, String senha) {
+	public ServidorDTO autenticar(String email, String senha) {
 		Optional<Servidor> servidor = repository.findByEmail(email);
+		
 		if(!servidor.isPresent()) {
 			throw new ErroAutencicacaoException("o email do servidor nao foi localizado");
 		}
@@ -37,7 +38,7 @@ public class ServidorService {
 			throw new ErroAutencicacaoException("a senha do servidor nao confere");
 		}
 		
-		return (servidor.get());
+		return new ServidorDTO(servidor.get());
 	}
 	
 	
@@ -71,6 +72,7 @@ public class ServidorService {
 			validarEmail(servidor.getEmail());
 			servidor = repository.save(servidor);
 			return new ServidorDTO(servidor);
+			
 		}catch (EntityNotFoundException e) {
 			throw new ResourceNotFoundException("o Id do servidor nao foi localizado");
 		}

@@ -2,7 +2,7 @@ package br.edu.ifms.ordemservico.entities;
 
 import java.io.Serializable;
 import java.sql.Date;
-import java.time.Instant;
+	
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -31,16 +31,22 @@ public class OrdemDeServico implements Serializable{
 	private String equipamento;
 	private String patrimonio;
 	private String setor;
+	
 	@Column(columnDefinition = "TEXT")
 	private String descricaoProblema;
+	
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Date dataCadastro;
+	
 	@Enumerated(value = EnumType.STRING)
 	private Status status;
+	
 	@Enumerated(value = EnumType.STRING)
 	private Prioridade prioridade;
+	
 	@Column(columnDefinition = "TEXT")
 	private String descricaoSolucao;
+	
 	@ManyToOne
 	@JoinColumn(name = "servidor_id")
 	private Servidor servidor;
@@ -159,11 +165,21 @@ public class OrdemDeServico implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		OrdemDeServico other = (OrdemDeServico) obj;
-		return Objects.equals(id, other.id);
+		
+		OrdemDeServico other = (OrdemDeServico) obj;		
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+			
 	}
+		
+
+}
 	
 	
 	
 
-}
+
