@@ -102,7 +102,7 @@ public class ServidorService {
 
 	public void validarEmail(String email) {
 		boolean existe = repository.existsByEmail(email);
-		if (existe) {
+		if (!existe) {
 			throw new RegraNegocioException("ja existe um servidor cadatrado com esse e-mail");
 		}
 		
